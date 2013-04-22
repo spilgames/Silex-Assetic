@@ -3,6 +3,7 @@
 namespace SilexAssetic;
 
 use SilexAssetic\Assetic\Dumper;
+use SilexAssetic\Assetic\Factory\AssetFactoryForBundle;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
@@ -50,7 +51,7 @@ class AsseticServiceProvider implements ServiceProviderInterface
          * @return Assetic\Factory\AssetFactory
          */
         $app['assetic.factory'] = $app->share(function () use ($app) {
-            $factory = new AssetFactory($app['assetic.path_to_web'], $app['assetic.options']['debug']);
+            $factory = new AssetFactoryForBundle($app);
             $factory->setAssetManager($app['assetic.asset_manager']);
             $factory->setFilterManager($app['assetic.filter_manager']);
 
